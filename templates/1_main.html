@@ -1,0 +1,40 @@
+{% extends "main.html" %}
+
+{% block main %}
+
+<link rel="stylesheet" href="/static/1_main_css.css">
+
+    <div>
+        <!--главная страница-->
+        <div class="welcoming_page_cl" id="welcoming_page_id">
+            <!--встречающая страница-->
+        </div>
+        <div class="organizations_activities_cl" id="organizations_activities_id">
+            <!--деятельность организации-->
+        </div>
+        <div class="description_organization_cl" id="description_organization_id">
+            <!--описание организации-->
+        </div>
+    </div>
+
+    <script>
+        'use strict' // Установка JS на строгий режим написания кода;
+        function welcoming_page_adaptation_f() {
+            // Адаптация высоты встречающей страницы;
+            let head_website = document.getElementById('head_website_id'); // (шапка сайта);
+            let head_website_dempf = document.getElementById('head_website_dempf_id'); // (демпфер шапка сайта);
+            let welcoming_page = document.getElementById('welcoming_page_id'); // (встречающая страница);
+            let footer = document.getElementById('footer_id'); // (подвал сайта);
+            let description_organization = document.getElementById('description_organization_id'); // (описание организации);
+            welcoming_page.style.height = `${window.innerHeight - head_website.offsetHeight}px`; 
+            head_website_dempf.style.height = `${head_website.offsetHeight}px`;
+            description_organization.style.height = `${window.innerHeight - head_website.offsetHeight - footer.offsetHeight}px`;
+        }
+        window.addEventListener('orientationchange', _=>{welcoming_page_adaptation_f()});
+        window.addEventListener('resize', _=>{welcoming_page_adaptation_f()});
+        document.addEventListener('DOMContentLoaded', _=>{welcoming_page_adaptation_f()})
+    </script>
+
+<script src="/static/1_main_js.js"></script>
+
+{% endblock %}

@@ -1,0 +1,111 @@
+{% extends "main.html" %}
+
+{% block main %}
+
+<link rel="stylesheet" href="/static/audio_catalog_css.css">
+
+<div >
+    <!--Блок загрузки сказки-->
+    <div class="body_server_cl">
+        <h2>Загрузка сказок на базу данных сервера</h2>
+        <form method="post" action="/downloading_a_fairy_tale_f" enctype="multipart/form-data" class="form_sending_cl" id="form_sending_id">
+            <div><label><span>Выберите аудио файл (формата: .mp3): </span><input type="file" name="audio_n" id="audio_id" accept=".mp3"></label><div class="error_cl" id="audio_error_id">(нужен файл mp3)</div></div>
+            <div><label><span>Выберите изображение (формата: .jpg): </span><input type="file" name="img_audio_n" id="img_audio_id" accept=".jpg"></label><div class="error_cl" id="img_audio_error_id">(нужен файл jpg)</div></div>
+            <div><label><span>Название сказки на Русском: </span><input type="text" name="name_n" placeholder="введите название сказки на Русском" id="name_id"></label><div class="error_cl" id="name_error_id">(введите название на Русском)</div></div> 
+            <div><label><span>Название сказки на Якутском: </span><input type="text" name="name_sakha_n" placeholder="введите название сказки на Якутском" id="name_sakha_id"></label><div class="error_cl" id="name_sakha_error_id">(введите название на Якутском)</div></div>     
+            <div><label><span>Описание сказки на Русском: </span><textarea cols="47" rows="5" name="description_n" placeholder="введите описание сказки на Русском" id="description_id"></textarea></label><div class="error_cl" id="description_error_id">(введите описание на Русском)</div></div>    
+            <div><label><span>Описание сказки на Якутском: </span><textarea cols="47" rows="5" name="description_sakha_n" placeholder="введите описание сказки на Якутском" id="description_sakha_id"></textarea></label><div class="error_cl" id="description_sakha_error_id">(введите описание на Якутском)</div></div> 
+            <div><label><span>Жанр (на Русском): </span><input type="text" name="genre_ru_n" placeholder="введите жанр (на Русском языке)" id="genre_ru_id"></label><div class="error_cl" id="genre_error_ru_id">(введите жанр (на Русском))</div></div>    
+            <div><label><span>Жанр (на Якутском): </span><input type="text" name="genre_n" placeholder="введите жанр (на Якутском языке)" id="genre_id"></label><div class="error_cl" id="genre_error_id">(введите жанр (на Якутском))</div></div>    
+            <div><label><span>Допустимый возраст слушателя: </span><input type="number" name="age_n" value="0" id="age_id"></label></div>     
+            <div><label><input type="submit" disabled value="отправить на базу данных" id="submit_button_id"></label></div>
+            <input style="display: none;" type="text" name="duration_n" id="duration_id">
+            <input style="display: none;" type="text" name="volume_n" id="volume_id">
+        </form>
+    </div>
+    <!--Таблица сказок с базы данных-->
+    <div class="body_server_cl">
+        <h2>Таблица загруженных сказок</h2>
+        <div class="body_server_table_cl">
+            <div>
+                <table class="table_db_cl">
+                    <thead id="gen_tr_td_id">
+                        <tr>
+                            <th>id</th>
+                            <th>Название сказки на Русском</th>
+                            <th>Название сказки на Якутском</th>
+                            <th>Описание сказки на Русском</th>
+                            <th>Описание сказки на Якутском</th>
+                            <th>Дата загрузки</th>
+                            <th>Продолжи-тельность</th>
+                            <th>Жанр (на Русском)</th>
+                            <th>Жанр (на Якутском)</th>
+                            <th>Объем аудио файла</th>
+                            <th>Допустимый возраст</th>
+                            <th>удалить</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modal_load_id">
+    <!--МОДАЛЬНОЕ_ОКНО_ЗАГРУЗКИ-->
+</div>
+<div id="modal_load_card_id">
+    <!--Надпись модального окна-->
+    <span>Подождите идет вычисление...</span>
+</div>
+<div id="delete_fairy_tale_id">
+    <!--МОДАЛЬНОЕ_ОКНО_ВЫБОРА_УДАЛЕНИЯ-->
+</div>
+<div id="delete_card_fairy_tale_id">
+    <!--КАРТОЧКА_ВЫБОРА_УДАЛЕНИЯ-->
+    <span>Вы действительно хотите удалить с базы данных даннную сказку?</span>
+    <span id="delete_text_fairy_tale_id"><!--наименование сказки--></span>
+    <div>
+        <div><span id="delete_yes_fairy_tale_id">ДА</span></div>
+        <div><span  id="delete_no_fairy_tale_id">НЕТ</span></div>
+    </div>
+</div>
+<div style="display: none;" id="waveform"><!--WAVEFORM--></div>
+<script src="https://unpkg.com/wavesurfer.js"></script>
+<script>
+    const modal_load = document.getElementById('modal_load_id'); // (МОДАЛЬНОЕ_ОКНО_ЗАГРУЗКИ);
+    const modal_load_card = document.getElementById('modal_load_card_id'); // (Надпись модального окна);
+    modal_load.style.display = 'none'; // (скрытие при запуске страницы "МОДАЛЬНОГО_ОКНА_ЗАГРУЗКИ)")
+    modal_load_card.style.display = 'none'; // (скрытие при запуске страницы "Надписи модального окна)")
+    // Создаем экземпляр wavesurfer
+    const wavesurfer = WaveSurfer.create({
+        container: '#waveform',
+        waveColor: 'violet',
+        progressColor: 'purple'
+    });
+    const audio_work = document.getElementById('audio_id'); // (Блок загрузки аудио файла)
+    // Функция вычисления продолжительности аудио файла;
+    audio_work.addEventListener('change', (e) => {
+        var file = e.target.files[0];
+        var objectUrl = URL.createObjectURL(file);
+        
+        // Загружаем аудиофайл в wavesurfer
+        wavesurfer.load(objectUrl);
+        
+        // Обработчик события 'ready' вызывается после загрузки аудиофайла
+        modal_load.style.display = '';
+        modal_load_card.style.display = '';
+        wavesurfer.on('ready', function () {
+            // Получаем продолжительность аудиофайла и выводим в консоль
+            var duration_second = Math.ceil(wavesurfer.getDuration());
+            var duration_minute = Math.floor(wavesurfer.getDuration() / 60);
+            var duration = `${duration_minute}:${ duration_second - duration_minute * 60}`;
+            let duration_obj = document.getElementById('duration_id');
+            duration_obj.value = duration;
+            modal_load.style.display = 'none';
+            modal_load_card.style.display = 'none';
+        });
+    })
+</script>
+<script src="/static/audio_catalog_js.js"></script>
+
+{% endblock %}
