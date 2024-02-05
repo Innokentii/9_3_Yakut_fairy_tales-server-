@@ -1,0 +1,209 @@
+/*=================================================================================*/
+/*                             ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ                               */
+/*VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV*/
+
+:root {
+    --w_h_modal_win: 200px; /*(ширина и высота карточки модального окна);*/
+    --bord_modal_win: 4px; /*(толщина рамки border карточки модального окна);*/
+    --height__head_website: 80px; /*(высота шапки сайта);*/
+    --bord_head_website: 2px; /*(толщина рамки шапки сайта));*/
+}
+
+/*=================================================================================*/
+/*                                  СТИЛИЗАЦИЯ                                    */
+/*VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV*/
+
+body {
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+footer {
+    width: 100%;
+    background-color: white;
+    display: grid;
+    border-top: solid 2px black;
+}
+
+footer > div:nth-child(1) {
+    border-bottom: solid 2px black;
+}
+
+footer > div:nth-child(1) >div:nth-child(2) {
+    border-left: solid 2px black;
+    border-right: solid 2px black;
+}
+
+footer > div:nth-child(2) {
+    border-bottom: solid 2px black;
+    text-align: center;
+}
+
+footer > div:nth-child(3) {
+    text-align: center;
+}
+
+/*_______иконка и ссылка сайта создателя_______*/
+
+.developer_footer_cl {
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(222, 220, 220);
+}
+
+.developer_footer_cl > a {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+}
+
+.developer_footer_cl > a:link, .developer_footer_cl > a:visited {
+    color: rgb(19, 129, 239);
+    text-shadow: 0.5px 0.5px 0.5px black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.developer_footer_cl > a > img {
+    width: 30px;
+    height: 21px;
+    border-radius: 10.5px;
+}
+
+
+
+/*_______главная страница_______*/
+
+
+
+body {
+    background: white;
+}
+
+/*________1_иконка загрузки страницы______________*/
+
+/*________3_тип шапки______________*/
+
+.head_website_stationary_cl {
+    /*стационарный*/
+    width: 100%;
+    height: var(--height__head_website);
+    border-bottom: solid var(--bord_head_website) black;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    background-color: white;
+}
+
+@media (max-width: 768px) {
+    .head_website_stationary_cl {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        height: auto;
+        gap: 5px;
+    }
+}
+
+/*___________________каталог_____________________*/
+.catalog_cl {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border-right: solid 1px black;
+}
+
+@media (max-width: 768px) {
+    .catalog_cl {display: none;}
+}
+
+.catalog_cl > a {
+    text-decoration: none;
+}
+
+.catalog_cl > a > div {
+    color: black;
+    font-size: 20px;
+    font-weight: bolder;
+    width: 280px;
+    height: 40px;
+    border: solid 4px black;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(45, 148, 45);
+}
+
+.catalog_cl > a > div:active {
+    width: 210px;
+    height: 30px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 35px;
+    margin-right: 35px;
+    font-size: 14px;
+}
+
+.burger_catalog_cl {
+    display: none;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border-right: solid 1px black;
+}
+
+@media (max-width: 768px) {
+    .burger_catalog_cl {display: flex;}
+}
+
+#burger_catalog_buttom_id {
+    width: 50px;
+    height: 50px;
+}
+
+#burger_catalog_buttom_id:hover {
+    cursor: pointer;
+}
+
+#burger_catalog_buttom_id:active {
+    margin: 2.5px;
+    width: 45px;
+    height: 45px;
+}
+
+.burger_catalog_open_cl {
+    width: 250px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: start;
+    padding: 10px;
+    border: solid 2px black;
+    background-color: white;
+}
+
+.burger_catalog_open_cl > a {
+    text-decoration: none;
+    color: black;
+    font-weight: bolder;
+}
+
+/*___________*/
+.main_text_cl {
+    font-size: 20px;
+    font-weight: bolder;
+    color: rgb(40, 40, 218);
+}

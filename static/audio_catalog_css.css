@@ -1,0 +1,229 @@
+/*=================================================================================*/
+/*                             ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ                               */
+/*VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV*/
+
+
+
+/*=================================================================================*/
+/*                                   СТИЛИЗАЦИЯ                                    */
+/*VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV*/
+
+.body_server_cl {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    padding-bottom: 50px;
+}
+
+/*===============Загрузка сказок на базу данных сервера===============*/
+
+.form_sending_cl {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form_sending_cl > div {
+    display: grid;
+    grid-template-columns: 0.8fr 0.2fr;
+    grid-template-rows: 1fr;
+    gap: 10px;
+}
+
+.form_sending_cl > div > label {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.form_sending_cl > div > label > input[type='text'] {
+    width: 50%;
+    height: 30px;
+    font-size: 16px;
+    padding-left: 10px;
+}
+
+.form_sending_cl > div > label > textarea {
+    resize: none;
+    font-size: 16px;
+}
+
+.form_sending_cl > div > label > input[type='number'] {
+    width: 40px;
+    height: 30px;
+    font-size: 16px;
+    padding-left: 10px;
+}
+
+.error_cl {
+    font-size: 10px;
+    color: red;
+    font-weight: bolder;
+}
+
+/*===============Кнопка отправки запроса на запсись в БД новой сказки===============*/
+
+#submit_button_id {
+    width: 300px;
+    height: 50px;
+    font-size: 20px;
+}
+
+#submit_button_id:hover {
+    cursor: pointer;
+}
+
+/*===============Таблица загруженных сказок===============*/
+
+.body_server_table_cl{
+    border: solid 2px black;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-x: scroll;
+}
+
+.body_server_table_cl > div {
+    width: 2000px;
+}
+
+.table_db_cl {
+    border-collapse: collapse;
+}
+
+.table_db_cl > thead > tr > th, .table_db_cl > thead > tr > td {
+    border: solid 2px black;
+    font-size: 12px;
+    height: 30px;
+}
+
+.table_db_cl > thead > tr > th:nth-child(1) {width: 20px;}
+.table_db_cl > thead > tr > th:nth-child(2) {width: 150px;}
+.table_db_cl > thead > tr > th:nth-child(3) {width: 150px;}
+.table_db_cl > thead > tr > th:nth-child(4) {width: 300px;}
+.table_db_cl > thead > tr > th:nth-child(5) {width: 300px;}
+.table_db_cl > thead > tr > th:nth-child(6) {width: 100px; text-align: center;}
+.table_db_cl > thead > tr > th:nth-child(7) {width: 100px; text-align: center;}
+.table_db_cl > thead > tr > th:nth-child(8) {width: 100px; text-align: center;}
+.table_db_cl > thead > tr > th:nth-child(9) {width: 100px; text-align: center;}
+.table_db_cl > thead > tr > th:nth-child(10) {width: 100px; text-align: center;}
+.table_db_cl > thead > tr > th:nth-child(11) {width: 100px; text-align: center;}
+.table_db_cl > thead > tr > th:nth-child(12) {width: 50px; color: red;}
+
+.table_db_cl > thead > tr > td:nth-child(6) {text-align: center;}
+.table_db_cl > thead > tr > td:nth-child(7) {text-align: center;}
+.table_db_cl > thead > tr > td:nth-child(8) {text-align: center;}
+.table_db_cl > thead > tr > td:nth-child(9) {text-align: center;}
+.table_db_cl > thead > tr > td:nth-child(10) {text-align: center;}
+.table_db_cl > thead > tr > td:nth-child(11) {text-align: center;}
+
+.table_db_cl > thead > tr > td:nth-child(12) {
+    width: 50px;
+    color: red;
+    font-weight: bolder;
+    text-align: center;
+    font-size: 20px;
+}
+
+.table_db_cl > thead > tr > td:nth-child(12):hover {
+    cursor: pointer;
+}
+
+/*===============МОДАЛЬНОЕ_ОКНО_ЗАГРУЗКИ===============*/
+#modal_load_id {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgb(62, 61, 61);
+    opacity: 0.8;
+}
+
+#modal_load_card_id {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    font-weight: bolder;
+}
+
+/*===============МОДАЛЬНОЕ_ОКНО_ВЫБОРА_УДАЛЕНИЯ===============*/
+
+#delete_fairy_tale_id {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgb(62, 61, 61);
+    opacity: 0.8;
+}
+
+#delete_card_fairy_tale_id {
+    top: calc(50vh - 100px);
+    left: calc(50vw - 200px);
+    width: 400px;
+    height: 200px;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: space-around;
+    align-self: center;
+    text-align: center;
+    border: solid 4px black;
+    border-radius: 30px;
+    padding-bottom: 25px;
+    background-color: white;
+}
+
+#delete_card_fairy_tale_id > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#delete_card_fairy_tale_id > div > div {
+    width: 100px;
+    height: 30px;
+    border: solid 2px black;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+#delete_card_fairy_tale_id > div > div:hover {
+    cursor: pointer;
+}
+
+#delete_card_fairy_tale_id > div > div:active {
+    width: 80px;
+    height: 25px;
+    margin-top: 2.5px;
+    margin-bottom: 2.5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 12px;
+}
+
+#delete_card_fairy_tale_id > div > div:nth-child(1) {
+    background-color: red;
+}
+
+#delete_card_fairy_tale_id > div > div:nth-child(2) {
+    background-color: green;
+}
+

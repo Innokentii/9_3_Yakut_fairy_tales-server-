@@ -1,0 +1,32 @@
+/*=================================================================================*/
+/*                             ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ                               */
+/*VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV*/
+
+
+
+/*=================================================================================*/
+/*                                  СТИЛИЗАЦИЯ                                    */
+/*VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV*/
+
+.welcoming_page_cl {
+    /*встречающая страница*/
+    width: 100%;
+    height: 1000px;
+    background-image: url(/static/windows_load.jpg);
+    background-size: cover;
+    background-position: 50% 50%;
+}
+
+.organizations_activities_cl {
+    /*деятельность организации*/
+    width: 100%;
+    height: 1000px;
+    background-color: green;
+}
+
+.description_organization_cl {
+    /*описание организации*/
+    width: 100%;
+    height: 1000px;
+    background-color: blue;
+}
